@@ -1,0 +1,1386 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>موسوعة امتحان علم الصرف التفاعلية — المراجع الخمسة كاملة</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <style>
+    :root {
+      --bg-page: #F8F4EC;
+      --bg-card: #FFFFFF;
+      --bg-subtle: #F2ECE0;
+      --bg-nav: rgba(255, 253, 248, 0.94);
+      --text-main: #1C2420;
+      --text-muted: #526058;
+      --border-color: #E3DAC9;
+      --accent: #0F5132;
+      --accent-soft: #E6F4EC;
+      --gold: #B0832D;
+      --gold-soft: #FDF6E3;
+      --danger: #991B1B;
+      --danger-soft: #FEF2F2;
+      --shadow-sm: 0 2px 8px rgba(28, 36, 32, 0.06);
+      --shadow-md: 0 8px 24px rgba(28, 36, 32, 0.08);
+      --node-line: #C7B99E;
+    }
+
+    html[data-theme="dark"] {
+      --bg-page: #0D1318;
+      --bg-card: #151E26;
+      --bg-subtle: #1C2731;
+      --bg-nav: rgba(15, 22, 28, 0.94);
+      --text-main: #EDF2F7;
+      --text-muted: #9FB0C0;
+      --border-color: #273542;
+      --accent: #34D399;
+      --accent-soft: rgba(52, 211, 153, 0.14);
+      --gold: #F2C45A;
+      --gold-soft: rgba(242, 196, 90, 0.12);
+      --danger: #F87171;
+      --danger-soft: rgba(248, 113, 113, 0.12);
+      --shadow-sm: 0 2px 10px rgba(0, 0, 0, 0.3);
+      --shadow-md: 0 10px 28px rgba(0, 0, 0, 0.45);
+      --node-line: #3A4D5E;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: 'Cairo', 'Segoe UI', Tahoma, sans-serif;
+      background-color: var(--bg-page);
+      color: var(--text-main);
+      overflow-x: hidden;
+      transition: background-color 0.25s ease, color 0.25s ease;
+    }
+
+    .font-classical {
+      font-family: 'Amiri', 'Traditional Arabic', Georgia, serif;
+      line-height: 2;
+      font-size: 1.15rem;
+    }
+
+    .card-surface {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .subtle-surface {
+      background: var(--bg-subtle);
+      border: 1px solid var(--border-color);
+    }
+
+    .sticky-nav {
+      background: var(--bg-nav);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .nav-tab {
+      color: var(--text-muted);
+      border-bottom: 2.5px solid transparent;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+    .nav-tab:hover {
+      color: var(--text-main);
+      background: var(--bg-subtle);
+    }
+    .nav-tab.active {
+      color: var(--accent);
+      border-bottom-color: var(--accent);
+      background: var(--accent-soft);
+      font-weight: 700;
+    }
+
+    .mm-canvas-wrap {
+      overflow: auto;
+      background: radial-gradient(circle at 1px 1px, var(--border-color) 1px, transparent 0);
+      background-size: 22px 22px;
+      border: 1px solid var(--border-color);
+      border-radius: 14px;
+      min-height: 460px;
+      max-height: 68vh;
+      padding: 24px;
+    }
+
+    .mm-tree-root {
+      display: inline-flex;
+      transform-origin: top right;
+      transition: transform 0.2s ease;
+      padding: 8px 8px 32px 32px;
+    }
+
+    .mm-branch {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 0;
+    }
+
+    .mm-children {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      position: relative;
+      padding-right: 26px;
+      margin-right: 8px;
+    }
+
+    .mm-children::before {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: 18px;
+      bottom: 18px;
+      width: 2px;
+      background: var(--node-line);
+    }
+
+    .mm-child-wrap {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .mm-child-wrap::before {
+      content: '';
+      position: absolute;
+      right: -26px;
+      top: 50%;
+      width: 26px;
+      height: 2px;
+      background: var(--node-line);
+    }
+
+    .mm-node-card {
+      background: var(--bg-card);
+      border: 1.5px solid var(--border-color);
+      border-radius: 12px;
+      padding: 9px 12px;
+      min-width: 185px;
+      max-width: 245px;
+      cursor: pointer;
+      transition: all 0.18s ease;
+      box-shadow: var(--shadow-sm);
+      position: relative;
+    }
+
+    .mm-node-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-1px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .mm-node-card.selected {
+      border-color: var(--gold);
+      box-shadow: 0 0 0 3px var(--gold-soft), var(--shadow-md);
+    }
+
+    .mm-node-card.search-hit {
+      border-color: var(--gold);
+      background: var(--gold-soft);
+    }
+
+    .mm-node-card.depth-0 {
+      background: var(--accent);
+      color: #FFFFFF;
+      border-color: var(--accent);
+      min-width: 240px;
+    }
+    html[data-theme="dark"] .mm-node-card.depth-0 {
+      background: #0F5132;
+      color: #FFFFFF;
+      border-color: #34D399;
+    }
+
+    .mm-toggle-btn {
+      width: 26px;
+      height: 26px;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 0.9rem;
+      border: 1.5px solid var(--border-color);
+      background: var(--bg-subtle);
+      color: var(--text-main);
+      margin-right: 6px;
+      flex-shrink: 0;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    .mm-toggle-btn:hover {
+      background: var(--accent);
+      color: #FFFFFF;
+      border-color: var(--accent);
+    }
+
+    .fc-scene {
+      perspective: 1200px;
+      width: 100%;
+      min-height: 300px;
+    }
+    .fc-card {
+      width: 100%;
+      min-height: 300px;
+      position: relative;
+      transform-style: preserve-3d;
+      transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+      cursor: pointer;
+    }
+    .fc-card.is-flipped {
+      transform: rotateY(180deg);
+    }
+    .fc-face {
+      position: absolute;
+      inset: 0;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+      border-radius: 18px;
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      background: var(--bg-card);
+      border: 2px solid var(--border-color);
+      box-shadow: var(--shadow-md);
+    }
+    .fc-back {
+      transform: rotateY(180deg);
+      border-color: var(--accent);
+      background: linear-gradient(180deg, var(--bg-card) 0%, var(--accent-soft) 100%);
+    }
+
+    .callout-info {
+      background: var(--accent-soft);
+      border-right: 4px solid var(--accent);
+    }
+    .callout-gold {
+      background: var(--gold-soft);
+      border-right: 4px solid var(--gold);
+    }
+    .callout-warning {
+      background: var(--danger-soft);
+      border-right: 4px solid var(--danger);
+    }
+
+    .sarf-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.95rem;
+    }
+    .sarf-table th {
+      background: var(--accent);
+      color: #FFFFFF;
+      padding: 11px 14px;
+      text-align: right;
+      font-weight: 700;
+    }
+    html[data-theme="dark"] .sarf-table th {
+      background: #0F5132;
+      color: #F8FAFC;
+    }
+    .sarf-table td {
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--border-color);
+      vertical-align: top;
+      line-height: 1.75;
+    }
+    .sarf-table tbody tr:nth-child(even) {
+      background: var(--bg-subtle);
+    }
+
+    #toast-box {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      z-index: 9999;
+      background: var(--accent);
+      color: #FFFFFF;
+      padding: 10px 18px;
+      border-radius: 10px;
+      font-weight: 700;
+      box-shadow: var(--shadow-md);
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(10px);
+      transition: all 0.25s ease;
+    }
+    html[data-theme="dark"] #toast-box {
+      background: #0F5132;
+      border: 1px solid #34D399;
+    }
+    #toast-box.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+  <header class="sticky top-0 z-40 sticky-nav">
+    <div class="max-w-7xl mx-auto px-3 sm:px-6">
+      <div class="flex flex-wrap items-center justify-between gap-3 py-3">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl flex items-center justify-center font-bold text-white shadow-sm" style="background: linear-gradient(135deg, #0F5132, #B0832D);">
+            ص
+          </div>
+          <div>
+            <h1 class="text-base sm:text-lg font-extrabold leading-tight">موسوعة امتحان علم الصرف التفاعلية</h1>
+            <p class="text-xs" style="color: var(--text-muted);">المصادر الخمسة كاملة • خرائط ذهنية • بطاقات حفظ • امتحان مقالي</p>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-2 sm:gap-3">
+          <div class="hidden md:flex items-center gap-2 px-3 py-1.5 rounded-xl subtle-surface text-xs">
+            <span style="color: var(--text-muted);">نسبة الجاهزية:</span>
+            <div class="w-24 h-2 rounded-full overflow-hidden" style="background: var(--border-color);">
+              <div id="global-progress-bar" class="h-full transition-all duration-300" style="width: 0%; background: var(--accent);"></div>
+            </div>
+            <span id="global-progress-text" class="font-bold" style="color: var(--accent);">٠٪</span>
+          </div>
+
+          <button id="theme-toggle-btn" type="button" class="px-3 py-2 rounded-xl card-surface text-xs sm:text-sm font-bold flex items-center gap-1.5 hover:opacity-90 transition cursor-pointer" aria-label="تبديل المظهر">
+            <span id="theme-icon">🌙</span>
+            <span id="theme-label">الوضع الليلي</span>
+          </button>
+        </div>
+      </div>
+
+      <nav class="flex items-center gap-1 overflow-x-auto pb-0.5" aria-label="التنقل الرئيسي">
+        <button type="button" data-tab="mindmap" class="nav-tab active px-3.5 py-2.5 rounded-t-lg text-sm cursor-pointer">🧠 الخرائط الذهنية</button>
+        <button type="button" data-tab="reader" class="nav-tab px-3.5 py-2.5 rounded-t-lg text-sm cursor-pointer">📚 الكتاب الجامع الكامل</button>
+        <button type="button" data-tab="flashcards" class="nav-tab px-3.5 py-2.5 rounded-t-lg text-sm cursor-pointer">🗂️ بطاقات الحفظ</button>
+        <button type="button" data-tab="essay" class="nav-tab px-3.5 py-2.5 rounded-t-lg text-sm cursor-pointer">✍️ محاكي الامتحان المقالي</button>
+        <button type="button" data-tab="search" class="nav-tab px-3.5 py-2.5 rounded-t-lg text-sm cursor-pointer">🔍 البحث وفهرس الشواهد</button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="flex-1 max-w-7xl w-full mx-auto px-3 sm:px-6 py-5">
+
+    <section id="view-mindmap" class="space-y-4">
+      <div id="mm-source-pills" class="flex flex-wrap gap-2"></div>
+
+      <div class="card-surface rounded-2xl p-3 flex flex-wrap items-center justify-between gap-2">
+        <div class="flex flex-wrap items-center gap-1.5">
+          <button type="button" id="mm-expand-all" class="px-3 py-1.5 rounded-lg text-xs font-bold subtle-surface hover:opacity-80 cursor-pointer">توسيع الكل</button>
+          <button type="button" id="mm-collapse-all" class="px-3 py-1.5 rounded-lg text-xs font-bold subtle-surface hover:opacity-80 cursor-pointer">طي الكل</button>
+          <button type="button" id="mm-zoom-in" class="px-2.5 py-1.5 rounded-lg text-xs font-bold subtle-surface hover:opacity-80 cursor-pointer">تكبير +</button>
+          <button type="button" id="mm-zoom-out" class="px-2.5 py-1.5 rounded-lg text-xs font-bold subtle-surface hover:opacity-80 cursor-pointer">تصغير -</button>
+          <button type="button" id="mm-zoom-reset" class="px-2.5 py-1.5 rounded-lg text-xs font-bold subtle-surface hover:opacity-80 cursor-pointer">١٠٠٪</button>
+          <button type="button" id="mm-mode-toggle" class="px-3 py-1.5 rounded-lg text-xs font-bold text-white cursor-pointer" style="background: var(--accent);">تبديل إلى العرض الهرمي</button>
+        </div>
+        <div class="flex items-center gap-2 flex-1 sm:flex-initial min-w-[200px]">
+          <input id="mm-search-input" type="search" placeholder="ابحث داخل هذه الخريطة..." class="w-full sm:w-64 px-3 py-1.5 rounded-xl text-xs subtle-surface focus:outline-none" />
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 items-start">
+        <div class="lg:col-span-8">
+          <div id="mm-canvas-container" class="mm-canvas-wrap">
+            <div id="mm-tree-mount" class="mm-tree-root"></div>
+          </div>
+          <div id="mm-outline-mount" class="hidden card-surface rounded-2xl p-4 space-y-2 max-h-[68vh] overflow-y-auto"></div>
+        </div>
+
+        <aside class="lg:col-span-4 card-surface rounded-2xl p-5 lg:sticky lg:top-32 space-y-3">
+          <div class="flex items-center justify-between gap-2 border-b pb-2.5" style="border-color: var(--border-color);">
+            <span class="text-xs font-bold px-2.5 py-1 rounded-full" style="background: var(--gold-soft); color: var(--gold);" id="mm-insp-tag">تفاصيل العقدة</span>
+            <span class="text-xs" style="color: var(--text-muted);" id="mm-insp-source"></span>
+          </div>
+          <h2 id="mm-insp-title" class="text-lg font-extrabold leading-snug"></h2>
+          <div id="mm-insp-detail" class="font-classical text-base leading-relaxed whitespace-pre-line"></div>
+          <div class="pt-3 border-t flex flex-wrap gap-2" style="border-color: var(--border-color);">
+            <button type="button" id="mm-jump-reader" class="w-full py-2 px-3 rounded-xl text-xs font-bold text-white cursor-pointer transition hover:opacity-90" style="background: var(--accent);">
+              📖 افتح النص الكامل والجداول لهذا المصدر
+            </button>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="view-reader" class="hidden space-y-5">
+      <div id="reader-source-pills" class="flex flex-wrap gap-2"></div>
+      <div id="reader-header" class="card-surface rounded-2xl p-5"></div>
+      <div id="reader-sections" class="space-y-5"></div>
+    </section>
+
+    <section id="view-flashcards" class="hidden space-y-5">
+      <div id="fc-deck-pills" class="flex flex-wrap gap-2"></div>
+
+      <div class="max-w-3xl mx-auto space-y-4">
+        <div class="card-surface rounded-2xl p-3.5 flex flex-wrap items-center justify-between gap-2 text-xs sm:text-sm">
+          <div class="font-bold">
+            البطاقة <span id="fc-counter" style="color: var(--accent);">١ / ١</span>
+            <span class="mx-2 opacity-40">|</span>
+            أتقنت: <span id="fc-mastered-count" style="color: var(--gold);">٠</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <button type="button" id="fc-filter-unmastered" class="px-3 py-1.5 rounded-lg text-xs font-bold subtle-surface cursor-pointer">عرض غير المتقنة فقط</button>
+            <button type="button" id="fc-shuffle" class="px-3 py-1.5 rounded-lg text-xs font-bold subtle-surface cursor-pointer">🔀 خلط</button>
+          </div>
+        </div>
+
+        <div class="fc-scene">
+          <div id="fc-card-el" class="fc-card" tabindex="0" role="button" aria-label="اقلب البطاقة">
+            <div class="fc-face fc-front">
+              <span class="text-xs font-bold px-3 py-1 rounded-full mb-4" style="background: var(--gold-soft); color: var(--gold);">السؤال — اضغط لقلب البطاقة</span>
+              <p id="fc-front-text" class="text-lg sm:text-xl font-bold leading-relaxed"></p>
+            </div>
+            <div class="fc-face fc-back">
+              <span class="text-xs font-bold px-3 py-1 rounded-full mb-4" style="background: var(--accent); color: #fff;">الإجابة النموذجية</span>
+              <p id="fc-back-text" class="font-classical text-lg sm:text-xl leading-relaxed"></p>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex flex-wrap items-center justify-between gap-2">
+          <button type="button" id="fc-prev" class="px-4 py-2.5 rounded-xl card-surface font-bold text-sm cursor-pointer hover:opacity-85">→ السابقة</button>
+          <div class="flex items-center gap-2">
+            <button type="button" id="fc-mark-review" class="px-4 py-2.5 rounded-xl text-sm font-bold cursor-pointer" style="background: var(--danger-soft); color: var(--danger);">🔄 أحتاج مراجعة</button>
+            <button type="button" id="fc-mark-mastered" class="px-4 py-2.5 rounded-xl text-sm font-bold text-white cursor-pointer" style="background: var(--accent);">✓ أتقنتها</button>
+          </div>
+          <button type="button" id="fc-next" class="px-4 py-2.5 rounded-xl card-surface font-bold text-sm cursor-pointer hover:opacity-85">التالية ←</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="view-essay" class="hidden space-y-5">
+      <div class="card-surface rounded-2xl p-4 flex flex-wrap items-center justify-between gap-3">
+        <div>
+          <h2 class="text-base sm:text-lg font-extrabold">محاكي الامتحان المقالي الشامل (١٨ سؤالاً محورياً)</h2>
+          <p class="text-xs sm:text-sm" style="color: var(--text-muted);">تدرّب على كتابة إجابتك أولاً، ثم قارنها بالإجابة النموذجية وقائمة عناصر التقييم.</p>
+        </div>
+        <div class="flex flex-wrap items-center gap-2">
+          <select id="essay-source-filter" class="px-3 py-2 rounded-xl text-xs sm:text-sm subtle-surface font-bold">
+            <option value="all">جميع المصادر الخمسة</option>
+            <option value="s1">مقدمة الصرف (عنتر)</option>
+            <option value="s2">الممتع ١ (المقدمة والتمييز)</option>
+            <option value="s3">الممتع ٢ (الأدلة التسعة)</option>
+            <option value="s4">الكتاب — النسب (سيبويه)</option>
+            <option value="s5">المسائل الحلبيات (أبو علي)</option>
+          </select>
+          <button type="button" id="essay-toggle-unmastered" class="px-3 py-2 rounded-xl text-xs sm:text-sm font-bold subtle-surface cursor-pointer">غير المتقنة فقط</button>
+        </div>
+      </div>
+
+      <div id="essay-list" class="space-y-4"></div>
+    </section>
+
+    <section id="view-search" class="hidden space-y-6">
+      <div class="card-surface rounded-2xl p-5 space-y-3">
+        <h2 class="text-lg font-extrabold">🔍 البحث الفوري في جميع المصادر الخمسة</h2>
+        <input id="global-search-input" type="search" placeholder="ابحث عن أي كلمة أو قاعدة أو عالم أو شاهد (مثل: تتفل، آدني، المازني، طائي، حنطأو، الودي)..." class="w-full px-4 py-3 rounded-xl text-sm subtle-surface focus:outline-none" />
+        <div id="global-search-results" class="space-y-2.5"></div>
+      </div>
+
+      <div class="card-surface rounded-2xl p-5 space-y-4">
+        <div class="flex flex-wrap items-center justify-between gap-2">
+          <div>
+            <h2 class="text-lg font-extrabold">📜 فهرس الشواهد القرآنية والشعرية (٢٧ شاهداً)</h2>
+            <p class="text-xs" style="color: var(--text-muted);">جميع الشواهد الواردة في المقررات الخمسة مع موضع الاستشهاد والصفحة</p>
+          </div>
+          <div class="flex gap-1.5" id="shawahid-filters">
+            <button type="button" data-sh-filter="all" class="sh-filter-btn px-3 py-1.5 rounded-lg text-xs font-bold text-white cursor-pointer" style="background: var(--accent);">الكل</button>
+            <button type="button" data-sh-filter="قرآن" class="sh-filter-btn px-3 py-1.5 rounded-lg text-xs font-bold subtle-surface cursor-pointer">قرآن كريم</button>
+            <button type="button" data-sh-filter="شعر" class="sh-filter-btn px-3 py-1.5 rounded-lg text-xs font-bold subtle-surface cursor-pointer">شواهد شعرية</button>
+          </div>
+        </div>
+        <div id="shawahid-grid" class="grid grid-cols-1 md:grid-cols-2 gap-3"></div>
+      </div>
+    </section>
+
+  </main>
+
+  <div id="toast-box" role="status" aria-live="polite"></div>
+
+  <script src="./js/data_s1_antar.js"></script>
+  <script src="./js/data_s2_mumti1.js"></script>
+  <script src="./js/data_s3_mumti2.js"></script>
+  <script src="./js/data_s4_sibawayh.js"></script>
+  <script src="./js/data_s5_halabiyyat.js"></script>
+  <script src="./js/data_study_tools.js"></script>
+
+  <script>
+    (function () {
+      const STORAGE_KEY = 'sarf_exam_master_v1';
+      const SOURCE_IDS = ['s1', 's2', 's3', 's4', 's5'];
+
+      function loadSaved() {
+        try {
+          const raw = localStorage.getItem(STORAGE_KEY);
+          return raw ? JSON.parse(raw) : {};
+        } catch (e) {
+          return {};
+        }
+      }
+
+      function saveState() {
+        try {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify({
+            theme: state.theme,
+            readSections: Array.from(state.readSections),
+            masteredCards: Array.from(state.masteredCards),
+            essayProgress: state.essayProgress
+          }));
+        } catch (e) {}
+      }
+
+      const saved = loadSaved();
+      const state = {
+        theme: saved.theme || 'light',
+        activeTab: 'mindmap',
+        mmSource: 's1',
+        mmExpanded: new Set(),
+        mmSelectedNodeId: null,
+        mmZoom: 1,
+        mmOutlineMode: false,
+        mmSearch: '',
+        readerSource: 's1',
+        readSections: new Set(saved.readSections || []),
+        fcDeckId: window.SARF_STUDY.flashcardDecks[0].id,
+        fcIndex: 0,
+        fcFlipped: false,
+        fcOnlyUnmastered: false,
+        fcOrder: [],
+        masteredCards: new Set(saved.masteredCards || []),
+        essaySourceFilter: 'all',
+        essayOnlyUnmastered: false,
+        essayProgress: saved.essayProgress || {},
+        shawahidFilter: 'all'
+      };
+
+      function showToast(msg) {
+        const el = document.getElementById('toast-box');
+        el.textContent = msg;
+        el.classList.add('show');
+        clearTimeout(showToast._t);
+        showToast._t = setTimeout(() => el.classList.remove('show'), 2100);
+      }
+
+      function toArabicNum(n) {
+        return String(n).replace(/\d/g, d => '٠١٢٣٤٥٦٧٨٩'[d]);
+      }
+
+      function applyTheme() {
+        document.documentElement.setAttribute('data-theme', state.theme);
+        const icon = document.getElementById('theme-icon');
+        const label = document.getElementById('theme-label');
+        if (state.theme === 'dark') {
+          icon.textContent = '☀️';
+          label.textContent = 'الوضع النهاري';
+        } else {
+          icon.textContent = '🌙';
+          label.textContent = 'الوضع الليلي';
+        }
+      }
+
+      document.getElementById('theme-toggle-btn').addEventListener('click', () => {
+        state.theme = state.theme === 'dark' ? 'light' : 'dark';
+        applyTheme();
+        saveState();
+      });
+
+      function updateGlobalProgress() {
+        let totalSections = 0;
+        SOURCE_IDS.forEach(id => { totalSections += window.SARF_DATA[id].sections.length; });
+        let totalCards = 0;
+        window.SARF_STUDY.flashcardDecks.forEach(d => { totalCards += d.cards.length; });
+        const totalEssays = window.SARF_STUDY.essayQuestions.length;
+        const masteredEssays = window.SARF_STUDY.essayQuestions.filter(q => state.essayProgress[q.id]?.mastered).length;
+
+        const total = totalSections + totalCards + totalEssays;
+        const done = state.readSections.size + state.masteredCards.size + masteredEssays;
+        const pct = total > 0 ? Math.round((done / total) * 100) : 0;
+
+        document.getElementById('global-progress-bar').style.width = pct + '%';
+        document.getElementById('global-progress-text').textContent = toArabicNum(pct) + '٪';
+      }
+
+      function switchTab(tabName) {
+        state.activeTab = tabName;
+        document.querySelectorAll('.nav-tab').forEach(btn => {
+          btn.classList.toggle('active', btn.dataset.tab === tabName);
+        });
+        ['mindmap', 'reader', 'flashcards', 'essay', 'search'].forEach(t => {
+          document.getElementById('view-' + t).classList.toggle('hidden', t !== tabName);
+        });
+        if (tabName === 'reader') renderReader();
+        if (tabName === 'flashcards') renderFlashcards();
+        if (tabName === 'essay') renderEssays();
+        if (tabName === 'search') renderShawahid();
+      }
+
+      document.querySelectorAll('.nav-tab').forEach(btn => {
+        btn.addEventListener('click', () => switchTab(btn.dataset.tab));
+      });
+
+      function collectNodeIds(node, acc = []) {
+        acc.push(node.id);
+        if (node.children) node.children.forEach(c => collectNodeIds(c, acc));
+        return acc;
+      }
+
+      function findNodeById(node, id) {
+        if (node.id === id) return node;
+        if (node.children) {
+          for (const c of node.children) {
+            const found = findNodeById(c, id);
+            if (found) return found;
+          }
+        }
+        return null;
+      }
+
+      function initMindmapForSource(srcId) {
+        state.mmSource = srcId;
+        const root = window.SARF_DATA[srcId].mindmap;
+        state.mmExpanded = new Set([root.id]);
+        state.mmSelectedNodeId = root.id;
+        state.mmSearch = '';
+        state.mmZoom = 1;
+        document.getElementById('mm-search-input').value = '';
+        renderMindmap();
+        const cw = document.getElementById('mm-canvas-container');
+        if (cw) { cw.scrollLeft = 0; cw.scrollTop = 0; }
+      }
+
+      function renderMindmapPills() {
+        const container = document.getElementById('mm-source-pills');
+        container.innerHTML = '';
+        SOURCE_IDS.forEach((id, idx) => {
+          const src = window.SARF_DATA[id];
+          const active = state.mmSource === id;
+          const btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold transition cursor-pointer';
+          btn.style.background = active ? src.badgeColor : 'var(--bg-card)';
+          btn.style.color = active ? '#FFFFFF' : 'var(--text-main)';
+          btn.style.border = active ? `1.5px solid ${src.badgeColor}` : '1px solid var(--border-color)';
+          btn.textContent = `${toArabicNum(idx + 1)}. ${src.shortTitle}`;
+          btn.addEventListener('click', () => initMindmapForSource(id));
+          container.appendChild(btn);
+        });
+      }
+
+      function updateInspector(node) {
+        const src = window.SARF_DATA[state.mmSource];
+        document.getElementById('mm-insp-tag').textContent = node.tag || 'مسألة';
+        document.getElementById('mm-insp-source').textContent = src.shortTitle;
+        document.getElementById('mm-insp-title').textContent = node.title;
+        document.getElementById('mm-insp-detail').textContent = node.detail || '';
+      }
+
+      function buildTreeNodeEl(node, depth) {
+        const branch = document.createElement('div');
+        branch.className = 'mm-branch';
+
+        const hasChildren = Array.isArray(node.children) && node.children.length > 0;
+        const isExpanded = state.mmExpanded.has(node.id);
+        const q = state.mmSearch.trim();
+        const isHit = q.length > 0 && (node.title.includes(q) || (node.detail && node.detail.includes(q)));
+
+        const card = document.createElement('div');
+        card.className = `mm-node-card depth-${depth} ${state.mmSelectedNodeId === node.id ? 'selected' : ''} ${isHit ? 'search-hit' : ''}`;
+
+        const topRow = document.createElement('div');
+        topRow.className = 'flex items-start justify-between gap-2';
+
+        const titleSpan = document.createElement('div');
+        titleSpan.className = 'font-bold text-xs sm:text-sm leading-snug';
+        titleSpan.textContent = node.title;
+        topRow.appendChild(titleSpan);
+
+        if (node.tag) {
+          const badge = document.createElement('span');
+          badge.className = 'text-[10px] font-bold px-2 py-0.5 rounded-full shrink-0';
+          badge.style.background = depth === 0 ? 'rgba(255,255,255,0.2)' : 'var(--accent-soft)';
+          badge.style.color = depth === 0 ? '#FFFFFF' : 'var(--accent)';
+          badge.textContent = node.tag;
+          topRow.appendChild(badge);
+        }
+        card.appendChild(topRow);
+
+        if (depth > 0 && node.detail) {
+          const snippet = document.createElement('p');
+          snippet.className = 'text-[11px] mt-1.5 line-clamp-2 leading-relaxed';
+          snippet.style.color = 'var(--text-muted)';
+          snippet.textContent = node.detail;
+          card.appendChild(snippet);
+        }
+
+        card.addEventListener('click', (e) => {
+          e.stopPropagation();
+          state.mmSelectedNodeId = node.id;
+          updateInspector(node);
+          renderMindmap();
+        });
+
+        branch.appendChild(card);
+
+        if (hasChildren) {
+          const toggle = document.createElement('button');
+          toggle.type = 'button';
+          toggle.className = 'mm-toggle-btn';
+          toggle.textContent = isExpanded ? '−' : '+';
+          toggle.title = isExpanded ? 'طي الفرع' : 'توسيع الفرع';
+          toggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (state.mmExpanded.has(node.id)) state.mmExpanded.delete(node.id);
+            else state.mmExpanded.add(node.id);
+            renderMindmap();
+          });
+          branch.appendChild(toggle);
+
+          if (isExpanded) {
+            const kidsCol = document.createElement('div');
+            kidsCol.className = 'mm-children';
+            node.children.forEach(ch => {
+              const wrap = document.createElement('div');
+              wrap.className = 'mm-child-wrap';
+              wrap.appendChild(buildTreeNodeEl(ch, depth + 1));
+              kidsCol.appendChild(wrap);
+            });
+            branch.appendChild(kidsCol);
+          }
+        }
+
+        return branch;
+      }
+
+      function buildOutlineNodeEl(node, depth) {
+        const wrap = document.createElement('div');
+        wrap.style.marginRight = (depth * 18) + 'px';
+        const hasChildren = Array.isArray(node.children) && node.children.length > 0;
+        const isExpanded = state.mmExpanded.has(node.id);
+        const q = state.mmSearch.trim();
+        const isHit = q.length > 0 && (node.title.includes(q) || (node.detail && node.detail.includes(q)));
+
+        const row = document.createElement('div');
+        row.className = `p-3 rounded-xl border cursor-pointer transition mb-2 ${state.mmSelectedNodeId === node.id ? 'ring-2' : ''}`;
+        row.style.borderColor = isHit ? 'var(--gold)' : 'var(--border-color)';
+        row.style.background = isHit ? 'var(--gold-soft)' : (depth === 0 ? 'var(--accent-soft)' : 'var(--bg-card)');
+
+        const header = document.createElement('div');
+        header.className = 'flex items-center justify-between gap-2';
+
+        const left = document.createElement('div');
+        left.className = 'flex items-center gap-2';
+        if (hasChildren) {
+          const btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'mm-toggle-btn';
+          btn.textContent = isExpanded ? '−' : '+';
+          btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (state.mmExpanded.has(node.id)) state.mmExpanded.delete(node.id);
+            else state.mmExpanded.add(node.id);
+            renderMindmap();
+          });
+          left.appendChild(btn);
+        }
+        const title = document.createElement('span');
+        title.className = 'font-bold text-sm';
+        title.textContent = node.title;
+        left.appendChild(title);
+        header.appendChild(left);
+
+        if (node.tag) {
+          const tag = document.createElement('span');
+          tag.className = 'text-[11px] font-bold px-2 py-0.5 rounded-full';
+          tag.style.background = 'var(--accent-soft)';
+          tag.style.color = 'var(--accent)';
+          tag.textContent = node.tag;
+          header.appendChild(tag);
+        }
+
+        row.appendChild(header);
+        row.addEventListener('click', () => {
+          state.mmSelectedNodeId = node.id;
+          updateInspector(node);
+          renderMindmap();
+        });
+        wrap.appendChild(row);
+
+        if (hasChildren && isExpanded) {
+          node.children.forEach(c => wrap.appendChild(buildOutlineNodeEl(c, depth + 1)));
+        }
+        return wrap;
+      }
+
+      function renderMindmap() {
+        renderMindmapPills();
+        const root = window.SARF_DATA[state.mmSource].mindmap;
+        const selected = findNodeById(root, state.mmSelectedNodeId) || root;
+        updateInspector(selected);
+
+        const canvasWrap = document.getElementById('mm-canvas-container');
+        const treeMount = document.getElementById('mm-tree-mount');
+        const outlineMount = document.getElementById('mm-outline-mount');
+        const modeBtn = document.getElementById('mm-mode-toggle');
+
+        if (state.mmOutlineMode) {
+          canvasWrap.classList.add('hidden');
+          outlineMount.classList.remove('hidden');
+          modeBtn.textContent = 'تبديل إلى الخريطة الشجرية';
+          outlineMount.innerHTML = '';
+          outlineMount.appendChild(buildOutlineNodeEl(root, 0));
+        } else {
+          outlineMount.classList.add('hidden');
+          canvasWrap.classList.remove('hidden');
+          modeBtn.textContent = 'تبديل إلى العرض الهرمي';
+          treeMount.innerHTML = '';
+          treeMount.style.transform = `scale(${state.mmZoom})`;
+          treeMount.appendChild(buildTreeNodeEl(root, 0));
+        }
+      }
+
+      document.getElementById('mm-expand-all').addEventListener('click', () => {
+        const root = window.SARF_DATA[state.mmSource].mindmap;
+        state.mmExpanded = new Set(collectNodeIds(root));
+        renderMindmap();
+      });
+      document.getElementById('mm-collapse-all').addEventListener('click', () => {
+        const root = window.SARF_DATA[state.mmSource].mindmap;
+        state.mmExpanded = new Set([root.id]);
+        renderMindmap();
+      });
+      document.getElementById('mm-zoom-in').addEventListener('click', () => {
+        state.mmZoom = Math.min(1.35, +(state.mmZoom + 0.1).toFixed(2));
+        renderMindmap();
+      });
+      document.getElementById('mm-zoom-out').addEventListener('click', () => {
+        state.mmZoom = Math.max(0.6, +(state.mmZoom - 0.1).toFixed(2));
+        renderMindmap();
+      });
+      document.getElementById('mm-zoom-reset').addEventListener('click', () => {
+        state.mmZoom = 1;
+        renderMindmap();
+      });
+      document.getElementById('mm-mode-toggle').addEventListener('click', () => {
+        state.mmOutlineMode = !state.mmOutlineMode;
+        renderMindmap();
+      });
+      document.getElementById('mm-search-input').addEventListener('input', (e) => {
+        state.mmSearch = e.target.value;
+        if (state.mmSearch.trim().length > 0) {
+          const root = window.SARF_DATA[state.mmSource].mindmap;
+          state.mmExpanded = new Set(collectNodeIds(root));
+        }
+        renderMindmap();
+      });
+      document.getElementById('mm-jump-reader').addEventListener('click', () => {
+        state.readerSource = state.mmSource;
+        switchTab('reader');
+      });
+
+      function renderReader() {
+        const pills = document.getElementById('reader-source-pills');
+        pills.innerHTML = '';
+        SOURCE_IDS.forEach((id, idx) => {
+          const src = window.SARF_DATA[id];
+          const active = state.readerSource === id;
+          const btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold transition cursor-pointer';
+          btn.style.background = active ? src.badgeColor : 'var(--bg-card)';
+          btn.style.color = active ? '#FFFFFF' : 'var(--text-main)';
+          btn.style.border = active ? `1.5px solid ${src.badgeColor}` : '1px solid var(--border-color)';
+          btn.textContent = `${toArabicNum(idx + 1)}. ${src.shortTitle}`;
+          btn.addEventListener('click', () => {
+            state.readerSource = id;
+            renderReader();
+          });
+          pills.appendChild(btn);
+        });
+
+        const src = window.SARF_DATA[state.readerSource];
+        document.getElementById('reader-header').innerHTML = `
+          <div class="flex flex-wrap items-start justify-between gap-3">
+            <div class="space-y-1">
+              <span class="inline-block text-xs font-bold px-2.5 py-1 rounded-full text-white" style="background: ${src.badgeColor};">${src.pages}</span>
+              <h2 class="text-xl font-extrabold leading-snug">${src.title}</h2>
+              <p class="text-sm font-semibold" style="color: var(--gold);">${src.author}</p>
+              <p class="text-sm leading-relaxed" style="color: var(--text-muted);">${src.summary}</p>
+            </div>
+          </div>
+        `;
+
+        const secMount = document.getElementById('reader-sections');
+        secMount.innerHTML = '';
+
+        src.sections.forEach(sec => {
+          const isRead = state.readSections.has(sec.id);
+          const card = document.createElement('article');
+          card.className = 'card-surface rounded-2xl overflow-hidden';
+
+          const head = document.createElement('div');
+          head.className = 'p-4 flex flex-wrap items-center justify-between gap-2 border-b';
+          head.style.borderColor = 'var(--border-color)';
+          head.style.background = 'var(--bg-subtle)';
+          head.innerHTML = `
+            <div>
+              <h3 class="text-base sm:text-lg font-extrabold">${sec.title}</h3>
+              <span class="text-xs font-semibold" style="color: var(--text-muted);">${sec.pages}</span>
+            </div>
+          `;
+
+          const checkBtn = document.createElement('button');
+          checkBtn.type = 'button';
+          checkBtn.className = 'px-3 py-1.5 rounded-xl text-xs font-bold transition cursor-pointer';
+          checkBtn.style.background = isRead ? 'var(--accent)' : 'var(--bg-card)';
+          checkBtn.style.color = isRead ? '#FFFFFF' : 'var(--text-main)';
+          checkBtn.style.border = '1px solid var(--border-color)';
+          checkBtn.textContent = isRead ? '✓ تمت مراجعة القسم' : 'تحديد كمُراجَع';
+          checkBtn.addEventListener('click', () => {
+            if (state.readSections.has(sec.id)) state.readSections.delete(sec.id);
+            else { state.readSections.add(sec.id); showToast('أحسنت! تم حفظ تقدم المراجعة'); }
+            saveState();
+            updateGlobalProgress();
+            renderReader();
+          });
+          head.appendChild(checkBtn);
+          card.appendChild(head);
+
+          const body = document.createElement('div');
+          body.className = 'p-5 space-y-5';
+
+          sec.blocks.forEach((blk, bIdx) => {
+            if (blk.type === 'callout') {
+              const box = document.createElement('div');
+              box.className = `p-4 rounded-xl callout-${blk.variant || 'info'}`;
+              box.innerHTML = `<h4 class="font-extrabold text-sm sm:text-base mb-2">${blk.title}</h4><div class="font-classical text-base leading-relaxed">${blk.text}</div>`;
+              body.appendChild(box);
+            } else if (blk.type === 'text') {
+              const box = document.createElement('div');
+              box.className = 'space-y-1.5';
+              box.innerHTML = `<h4 class="font-extrabold text-base" style="color: var(--accent);">${blk.title}</h4><div class="font-classical text-base leading-relaxed">${blk.text}</div>`;
+              body.appendChild(box);
+            } else if (blk.type === 'definitions') {
+              const grid = document.createElement('div');
+              grid.className = 'grid grid-cols-1 md:grid-cols-2 gap-3';
+              blk.items.forEach(item => {
+                const d = document.createElement('div');
+                d.className = 'p-4 rounded-xl subtle-surface';
+                d.innerHTML = `<div class="font-extrabold text-sm mb-1" style="color: var(--accent);">${item.term}</div><div class="font-classical text-base">${item.def}</div>`;
+                grid.appendChild(d);
+              });
+              body.appendChild(grid);
+            } else if (blk.type === 'cards') {
+              const grid = document.createElement('div');
+              grid.className = 'grid grid-cols-1 md:grid-cols-2 gap-4';
+              blk.items.forEach(item => {
+                const c = document.createElement('div');
+                c.className = 'p-4 rounded-xl subtle-surface space-y-2';
+                const listHtml = item.points.map(p => `<li class="font-classical text-base leading-relaxed">${p}</li>`).join('');
+                c.innerHTML = `
+                  <h4 class="font-extrabold text-base" style="color: var(--accent);">${item.title}</h4>
+                  <p class="text-xs font-bold" style="color: var(--gold);">${item.meta}</p>
+                  <ul class="list-disc pr-5 space-y-1.5">${listHtml}</ul>
+                `;
+                grid.appendChild(c);
+              });
+              body.appendChild(grid);
+            } else if (blk.type === 'table') {
+              const wrap = document.createElement('div');
+              wrap.className = 'space-y-2.5';
+              const topBar = document.createElement('div');
+              topBar.className = 'flex flex-wrap items-center justify-between gap-2';
+              const h4 = document.createElement('h4');
+              h4.className = 'font-extrabold text-sm sm:text-base';
+              h4.style.color = 'var(--accent)';
+              h4.textContent = blk.title;
+              topBar.appendChild(h4);
+
+              const tableId = `tbl-${sec.id}-${bIdx}`;
+              if (blk.searchable) {
+                const inp = document.createElement('input');
+                inp.type = 'search';
+                inp.placeholder = 'تصفية صفوف الجدول...';
+                inp.className = 'px-3 py-1.5 rounded-lg text-xs subtle-surface w-full sm:w-56';
+                inp.addEventListener('input', () => {
+                  const q = inp.value.trim();
+                  const tbody = document.getElementById(tableId);
+                  Array.from(tbody.rows).forEach(tr => {
+                    tr.style.display = (!q || tr.textContent.includes(q)) ? '' : 'none';
+                  });
+                });
+                topBar.appendChild(inp);
+              }
+              wrap.appendChild(topBar);
+
+              const scroller = document.createElement('div');
+              scroller.className = 'overflow-x-auto rounded-xl border';
+              scroller.style.borderColor = 'var(--border-color)';
+              const thead = blk.headers.map(h => `<th>${h}</th>`).join('');
+              const tbodyRows = blk.rows.map(r => `<tr>${r.map(cell => `<td class="font-classical text-base">${cell}</td>`).join('')}</tr>`).join('');
+              scroller.innerHTML = `<table class="sarf-table"><thead><tr>${thead}</tr></thead><tbody id="${tableId}">${tbodyRows}</tbody></table>`;
+              wrap.appendChild(scroller);
+              body.appendChild(wrap);
+            }
+          });
+
+          card.appendChild(body);
+          secMount.appendChild(card);
+        });
+      }
+
+      function getActiveDeckCards() {
+        const deck = window.SARF_STUDY.flashcardDecks.find(d => d.id === state.fcDeckId) || window.SARF_STUDY.flashcardDecks[0];
+        let cards = deck.cards.slice();
+        if (state.fcOrder.length === cards.length) {
+          cards = state.fcOrder.map(i => cards[i]);
+        }
+        if (state.fcOnlyUnmastered) {
+          const filtered = cards.filter(c => !state.masteredCards.has(c.id));
+          if (filtered.length > 0) return filtered;
+        }
+        return cards;
+      }
+
+      function renderFlashcards() {
+        const pills = document.getElementById('fc-deck-pills');
+        pills.innerHTML = '';
+        window.SARF_STUDY.flashcardDecks.forEach(deck => {
+          const active = deck.id === state.fcDeckId;
+          const mCount = deck.cards.filter(c => state.masteredCards.has(c.id)).length;
+          const btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'px-3 py-2 rounded-xl text-xs font-bold transition cursor-pointer';
+          btn.style.background = active ? 'var(--accent)' : 'var(--bg-card)';
+          btn.style.color = active ? '#FFFFFF' : 'var(--text-main)';
+          btn.style.border = '1px solid var(--border-color)';
+          btn.textContent = `${deck.title} (${toArabicNum(mCount)}/${toArabicNum(deck.cards.length)})`;
+          btn.addEventListener('click', () => {
+            state.fcDeckId = deck.id;
+            state.fcIndex = 0;
+            state.fcFlipped = false;
+            state.fcOrder = [];
+            renderFlashcards();
+          });
+          pills.appendChild(btn);
+        });
+
+        const cards = getActiveDeckCards();
+        if (state.fcIndex >= cards.length) state.fcIndex = 0;
+        const card = cards[state.fcIndex];
+
+        const deck = window.SARF_STUDY.flashcardDecks.find(d => d.id === state.fcDeckId);
+        const masteredInDeck = deck.cards.filter(c => state.masteredCards.has(c.id)).length;
+        document.getElementById('fc-counter').textContent = `${toArabicNum(state.fcIndex + 1)} / ${toArabicNum(cards.length)}`;
+        document.getElementById('fc-mastered-count').textContent = `${toArabicNum(masteredInDeck)} / ${toArabicNum(deck.cards.length)}`;
+
+        const filterBtn = document.getElementById('fc-filter-unmastered');
+        filterBtn.style.background = state.fcOnlyUnmastered ? 'var(--gold)' : 'var(--bg-subtle)';
+        filterBtn.style.color = state.fcOnlyUnmastered ? '#FFFFFF' : 'var(--text-main)';
+
+        const cardEl = document.getElementById('fc-card-el');
+        cardEl.classList.toggle('is-flipped', state.fcFlipped);
+        document.getElementById('fc-front-text').textContent = card.q;
+        document.getElementById('fc-back-text').textContent = card.a;
+      }
+
+      document.getElementById('fc-card-el').addEventListener('click', () => {
+        state.fcFlipped = !state.fcFlipped;
+        document.getElementById('fc-card-el').classList.toggle('is-flipped', state.fcFlipped);
+      });
+      document.getElementById('fc-prev').addEventListener('click', () => {
+        const cards = getActiveDeckCards();
+        state.fcIndex = (state.fcIndex - 1 + cards.length) % cards.length;
+        state.fcFlipped = false;
+        renderFlashcards();
+      });
+      document.getElementById('fc-next').addEventListener('click', () => {
+        const cards = getActiveDeckCards();
+        state.fcIndex = (state.fcIndex + 1) % cards.length;
+        state.fcFlipped = false;
+        renderFlashcards();
+      });
+      document.getElementById('fc-mark-mastered').addEventListener('click', () => {
+        const cards = getActiveDeckCards();
+        const card = cards[state.fcIndex];
+        state.masteredCards.add(card.id);
+        saveState();
+        updateGlobalProgress();
+        showToast('ممتاز! أُضيفت إلى البطاقات المتقنة');
+        state.fcIndex = (state.fcIndex + 1) % cards.length;
+        state.fcFlipped = false;
+        renderFlashcards();
+      });
+      document.getElementById('fc-mark-review').addEventListener('click', () => {
+        const cards = getActiveDeckCards();
+        const card = cards[state.fcIndex];
+        state.masteredCards.delete(card.id);
+        saveState();
+        updateGlobalProgress();
+        showToast('أُبقيت البطاقة للمراجعة اللاحقة');
+        state.fcIndex = (state.fcIndex + 1) % cards.length;
+        state.fcFlipped = false;
+        renderFlashcards();
+      });
+      document.getElementById('fc-shuffle').addEventListener('click', () => {
+        const deck = window.SARF_STUDY.flashcardDecks.find(d => d.id === state.fcDeckId);
+        const arr = deck.cards.map((_, i) => i);
+        for (let i = arr.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [arr[i], arr[j]] = [arr[j], arr[i]];
+        }
+        state.fcOrder = arr;
+        state.fcIndex = 0;
+        state.fcFlipped = false;
+        showToast('تم خلط البطاقات');
+        renderFlashcards();
+      });
+      document.getElementById('fc-filter-unmastered').addEventListener('click', () => {
+        state.fcOnlyUnmastered = !state.fcOnlyUnmastered;
+        state.fcIndex = 0;
+        state.fcFlipped = false;
+        renderFlashcards();
+      });
+
+      function renderEssays() {
+        const list = document.getElementById('essay-list');
+        list.innerHTML = '';
+
+        let qs = window.SARF_STUDY.essayQuestions.filter(q => {
+          if (state.essaySourceFilter !== 'all' && q.source !== state.essaySourceFilter) return false;
+          if (state.essayOnlyUnmastered && state.essayProgress[q.id]?.mastered) return false;
+          return true;
+        });
+
+        if (qs.length === 0) {
+          list.innerHTML = '<div class="card-surface rounded-2xl p-6 text-center font-bold">🎉 أتقنت جميع الأسئلة المقالية في هذا القسم!</div>';
+          return;
+        }
+
+        qs.forEach((q, idx) => {
+          const prog = state.essayProgress[q.id] || { draft: '', checked: [], mastered: false, open: false };
+          const src = window.SARF_DATA[q.source];
+
+          const card = document.createElement('div');
+          card.className = 'card-surface rounded-2xl p-5 space-y-3';
+
+          const header = document.createElement('div');
+          header.className = 'flex flex-wrap items-center justify-between gap-2';
+          header.innerHTML = `
+            <div class="flex items-center gap-2">
+              <span class="text-xs font-bold px-2.5 py-1 rounded-full text-white" style="background: ${src.badgeColor};">${src.shortTitle}</span>
+              <span class="text-xs font-bold px-2.5 py-1 rounded-full" style="background: var(--gold-soft); color: var(--gold);">${q.difficulty}</span>
+            </div>
+          `;
+
+          const masterBtn = document.createElement('button');
+          masterBtn.type = 'button';
+          masterBtn.className = 'px-3 py-1.5 rounded-xl text-xs font-bold cursor-pointer';
+          masterBtn.style.background = prog.mastered ? 'var(--accent)' : 'var(--bg-subtle)';
+          masterBtn.style.color = prog.mastered ? '#FFFFFF' : 'var(--text-main)';
+          masterBtn.textContent = prog.mastered ? '✓ متقن' : 'تحديد كمتقن';
+          masterBtn.addEventListener('click', () => {
+            state.essayProgress[q.id] = { ...prog, mastered: !prog.mastered };
+            saveState();
+            updateGlobalProgress();
+            renderEssays();
+          });
+          header.appendChild(masterBtn);
+          card.appendChild(header);
+
+          const qTitle = document.createElement('h3');
+          qTitle.className = 'text-base sm:text-lg font-extrabold leading-relaxed';
+          qTitle.textContent = `${toArabicNum(idx + 1)}. ${q.question}`;
+          card.appendChild(qTitle);
+
+          const textarea = document.createElement('textarea');
+          textarea.rows = 3;
+          textarea.placeholder = 'تدرّب بكتابة إجابتك المقالية هنا قبل كشف الإجابة النموذجية (يُحفظ تلقائياً)...';
+          textarea.className = 'w-full p-3 rounded-xl text-sm subtle-surface focus:outline-none font-classical';
+          textarea.value = prog.draft || '';
+          textarea.addEventListener('input', () => {
+            state.essayProgress[q.id] = { ...(state.essayProgress[q.id] || prog), draft: textarea.value };
+            saveState();
+          });
+          card.appendChild(textarea);
+
+          const revealBtn = document.createElement('button');
+          revealBtn.type = 'button';
+          revealBtn.className = 'px-4 py-2 rounded-xl text-xs sm:text-sm font-bold text-white cursor-pointer';
+          revealBtn.style.background = 'var(--accent)';
+          revealBtn.textContent = prog.open ? 'إخفاء الإجابة النموذجية ▲' : 'إظهار الإجابة النموذجية وعناصر التقييم ▼';
+
+          const answerBox = document.createElement('div');
+          answerBox.className = `space-y-3 pt-2 ${prog.open ? '' : 'hidden'}`;
+
+          const rubricWrap = document.createElement('div');
+          rubricWrap.className = 'p-3.5 rounded-xl callout-gold space-y-2';
+          rubricWrap.innerHTML = '<div class="text-xs font-extrabold" style="color: var(--gold);">قائمة التحقق من عناصر الإجابة الكاملة (قيّم نفسك):</div>';
+
+          q.rubric.forEach((item, rIdx) => {
+            const checked = (prog.checked || []).includes(rIdx);
+            const lbl = document.createElement('label');
+            lbl.className = 'flex items-center gap-2 text-xs sm:text-sm cursor-pointer';
+            const cb = document.createElement('input');
+            cb.type = 'checkbox';
+            cb.checked = checked;
+            cb.addEventListener('change', () => {
+              const cur = state.essayProgress[q.id] || prog;
+              const set = new Set(cur.checked || []);
+              if (cb.checked) set.add(rIdx); else set.delete(rIdx);
+              state.essayProgress[q.id] = { ...cur, checked: Array.from(set) };
+              saveState();
+            });
+            lbl.appendChild(cb);
+            const sp = document.createElement('span');
+            sp.textContent = item;
+            lbl.appendChild(sp);
+            rubricWrap.appendChild(lbl);
+          });
+
+          const modelAns = document.createElement('div');
+          modelAns.className = 'p-4 rounded-xl callout-info font-classical text-base leading-relaxed';
+          modelAns.innerHTML = `<div class="text-xs font-extrabold mb-2" style="color: var(--accent);">الإجابة النموذجية الكاملة:</div>${q.answer}`;
+
+          answerBox.appendChild(rubricWrap);
+          answerBox.appendChild(modelAns);
+
+          revealBtn.addEventListener('click', () => {
+            const isNowOpen = answerBox.classList.contains('hidden');
+            answerBox.classList.toggle('hidden', !isNowOpen);
+            revealBtn.textContent = isNowOpen ? 'إخفاء الإجابة النموذجية ▲' : 'إظهار الإجابة النموذجية وعناصر التقييم ▼';
+            state.essayProgress[q.id] = { ...(state.essayProgress[q.id] || prog), open: isNowOpen };
+          });
+
+          card.appendChild(revealBtn);
+          card.appendChild(answerBox);
+          list.appendChild(card);
+        });
+      }
+
+      document.getElementById('essay-source-filter').addEventListener('change', (e) => {
+        state.essaySourceFilter = e.target.value;
+        renderEssays();
+      });
+      document.getElementById('essay-toggle-unmastered').addEventListener('click', (e) => {
+        state.essayOnlyUnmastered = !state.essayOnlyUnmastered;
+        e.target.style.background = state.essayOnlyUnmastered ? 'var(--gold)' : 'var(--bg-subtle)';
+        e.target.style.color = state.essayOnlyUnmastered ? '#FFFFFF' : 'var(--text-main)';
+        renderEssays();
+      });
+
+      function stripHtml(html) {
+        return String(html || '').replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim();
+      }
+
+      function runGlobalSearch(q) {
+        const box = document.getElementById('global-search-results');
+        q = q.trim();
+        if (q.length < 2) {
+          box.innerHTML = '<p class="text-xs" style="color: var(--text-muted);">اكتب كلمتين أو حرفين على الأقل للبحث الفوري في جميع الكتب الخمسة والجداول والشواهد.</p>';
+          return;
+        }
+
+        const hits = [];
+        SOURCE_IDS.forEach(id => {
+          const src = window.SARF_DATA[id];
+          function scanNode(node) {
+            if (node.title.includes(q) || (node.detail && node.detail.includes(q))) {
+              hits.push({ type: 'خريطة ذهنية', source: src.shortTitle, title: node.title, snippet: node.detail || '', action: () => { initMindmapForSource(id); state.mmExpanded = new Set(collectNodeIds(src.mindmap)); state.mmSelectedNodeId = node.id; switchTab('mindmap'); renderMindmap(); } });
+            }
+            if (node.children) node.children.forEach(scanNode);
+          }
+          scanNode(src.mindmap);
+
+          src.sections.forEach(sec => {
+            sec.blocks.forEach(blk => {
+              if (blk.type === 'table') {
+                blk.rows.forEach(r => {
+                  const rowStr = r.join(' — ');
+                  if (rowStr.includes(q)) {
+                    hits.push({ type: 'جدول', source: src.shortTitle, title: blk.title, snippet: rowStr, action: () => { state.readerSource = id; switchTab('reader'); } });
+                  }
+                });
+              }
+            });
+          });
+        });
+
+        window.SARF_STUDY.shawahid.forEach(sh => {
+          if (sh.text.includes(q) || sh.point.includes(q) || sh.page.includes(q)) {
+            hits.push({ type: 'شاهد', source: sh.page, title: sh.text, snippet: sh.point, action: () => {} });
+          }
+        });
+
+        if (hits.length === 0) {
+          box.innerHTML = '<p class="text-sm font-bold" style="color: var(--danger);">لم يُعثر على نتائج مطابقة. جرّب البحث دون تشكيل أو بكلمة جذر.</p>';
+          return;
+        }
+
+        box.innerHTML = `<div class="text-xs font-bold mb-2" style="color: var(--accent);">وُجدت ${toArabicNum(hits.length)} نتيجة (يُعرض أول ٢٥):</div>`;
+        hits.slice(0, 25).forEach(h => {
+          const row = document.createElement('div');
+          row.className = 'p-3 rounded-xl subtle-surface cursor-pointer hover:opacity-90 transition';
+          row.innerHTML = `
+            <div class="flex items-center gap-2 mb-1">
+              <span class="text-[11px] font-bold px-2 py-0.5 rounded-full" style="background: var(--accent-soft); color: var(--accent);">${h.type}</span>
+              <span class="text-[11px] font-bold" style="color: var(--gold);">${h.source}</span>
+            </div>
+            <div class="font-bold text-sm">${h.title}</div>
+            <p class="font-classical text-sm mt-1 line-clamp-2" style="color: var(--text-muted);">${stripHtml(h.snippet)}</p>
+          `;
+          row.addEventListener('click', h.action);
+          box.appendChild(row);
+        });
+      }
+
+      document.getElementById('global-search-input').addEventListener('input', (e) => runGlobalSearch(e.target.value));
+
+      function renderShawahid() {
+        const grid = document.getElementById('shawahid-grid');
+        grid.innerHTML = '';
+        const items = window.SARF_STUDY.shawahid.filter(sh => {
+          if (state.shawahidFilter === 'all') return true;
+          return sh.type.includes(state.shawahidFilter);
+        });
+
+        items.forEach(sh => {
+          const card = document.createElement('div');
+          card.className = 'p-4 rounded-xl subtle-surface space-y-2';
+          card.innerHTML = `
+            <div class="flex items-center justify-between gap-2 text-xs">
+              <span class="font-bold px-2.5 py-0.5 rounded-full" style="background: var(--gold-soft); color: var(--gold);">${sh.type}</span>
+              <span class="font-bold" style="color: var(--text-muted);">${sh.page}</span>
+            </div>
+            <blockquote class="font-classical text-lg font-bold text-center py-2 px-3 rounded-lg card-surface" style="color: var(--accent);">${sh.text}</blockquote>
+            <p class="text-xs sm:text-sm leading-relaxed"><strong>موضع الشاهد:</strong> ${sh.point}</p>
+          `;
+          grid.appendChild(card);
+        });
+      }
+
+      document.querySelectorAll('.sh-filter-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          state.shawahidFilter = btn.dataset.shFilter;
+          document.querySelectorAll('.sh-filter-btn').forEach(b => {
+            const active = b.dataset.shFilter === state.shawahidFilter;
+            b.style.background = active ? 'var(--accent)' : 'var(--bg-subtle)';
+            b.style.color = active ? '#FFFFFF' : 'var(--text-main)';
+          });
+          renderShawahid();
+        });
+      });
+
+      applyTheme();
+      updateGlobalProgress();
+      initMindmapForSource('s1');
+      runGlobalSearch('');
+    })();
+  </script>
+</body>
+</html>
